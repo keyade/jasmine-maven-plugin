@@ -32,7 +32,6 @@ import org.openqa.selenium.Capabilities;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
-import static org.openqa.selenium.remote.CapabilityType.SUPPORTS_JAVASCRIPT;
 
 @ExtendWith(MockitoExtension.class)
 public class WebDriverFactoryTest {
@@ -58,11 +57,6 @@ public class WebDriverFactoryTest {
   public void customDriverIsCreatedWithCapabilitiesIfConstructorExists() {
     when(config.getWebDriverClassName()).thenReturn(CustomDriverWithCapabilities.class.getName());
     assertThat(factory.createWebDriver(config)).isExactlyInstanceOf(CustomDriverWithCapabilities.class);
-  }
-
-  @Test
-  public void enablesJavascriptOnCustomDriver() throws Exception {
-    assertThat(createWebDriverAndReturnCapabilities().is(SUPPORTS_JAVASCRIPT)).isTrue();
   }
 
   @Test

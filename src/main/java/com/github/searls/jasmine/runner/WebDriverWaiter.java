@@ -27,6 +27,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 import javax.inject.Named;
 
 @Named
@@ -51,7 +53,7 @@ class WebDriverWaiter {
                                     final boolean debug) {
     final JavascriptExecutor executor = (JavascriptExecutor) driver;
     try {
-      new WebDriverWait(driver, timeout, 1000).until(
+      new WebDriverWait(driver, Duration.ofSeconds(timeout), Duration.ofSeconds(1)).until(
         (Function<WebDriver, Boolean>) input -> executionFinished(executor)
       );
     } catch (TimeoutException e) {
